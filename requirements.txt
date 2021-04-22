@@ -1,0 +1,12 @@
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+# Bla
+
+azure-functions
+scipy==1.4.1
+h5py==2.10.0
+numpy==1.19.2
+tensorflow==2.4.0
+keras==2.4.3
+pandas==1.2.0
