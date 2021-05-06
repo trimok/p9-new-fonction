@@ -1,6 +1,6 @@
 import logging
 import json
-import pandas
+import pandas as pd
 
 import azure.functions as func
 
