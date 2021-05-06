@@ -65,7 +65,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         else:
             userId = req_body.get('userId')
 
-    if userId is None:
+    if userId is not None:
         list_item = web_search_items("cb", userId)
         return func.HttpResponse(json.dumps(list_item), mimetype="application/json")        
     else:
