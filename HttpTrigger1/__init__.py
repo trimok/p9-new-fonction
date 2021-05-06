@@ -46,7 +46,7 @@ def web_search_items(type_recommandation, userId,
     df = web_dict_df [type_recommandation]
     
     # Les items conseillés
-    items = df[df.user == userId].sort_values(by=['rank'])["item"].tolist()
+    items = df[df.user == int(userId)].sort_values(by=['rank'])["item"].tolist()
     
     return items
 
