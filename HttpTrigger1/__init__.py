@@ -6,22 +6,29 @@ import azure.functions as func
 
 
 web_init_df = False
+web_dict_df = None
 
+# Fonction pour le web
 # Initialisations : on charge les dataframe en mémoire
 def web_init(cf_recommend_filename=None, cb_recommend_filename=None):
     global web_init_df
-    global dict_df
+    global web_dict_df
+    
+    df_cf_recommend=None
+    df_cb_recommend=None
     
     if not web_init_df:
         try:
             df_cf_recommend = pd.read_csv(cf_recommend_filename)
-        except:
+        except Exception as e:
+            print(str(e))
             pass
         try:
             df_cb_recommend = pd.read_csv(cb_recommend_filename)
-        except:
+        except  Exception as e:
+            print (str(e))
             pass
-        dict_df = {"cf":df_cf_recommend, "cb" :df_cb_recommend}
+        web_dict_df = {"cf":df_cf_recommend, "cb" :df_cb_recommend}
         
         web_init_df = True
 
@@ -36,7 +43,7 @@ def web_search_items(type_recommandation, userId,
     web_init(cf_recommend_filename=cf_recommend_filename, cb_recommend_filename=cb_recommend_filename);
     
     # Les données correspondant au bon type de filtering
-    df = dict_df [type_recommandation]
+    df = web_dict_df [type_recommandation]
     
     # Les items conseillés
     items = df[df.user == userId].sort_values(by=['rank'])["item"].tolist()
