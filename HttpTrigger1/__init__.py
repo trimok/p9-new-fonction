@@ -35,8 +35,8 @@ def web_init(cf_recommend_filename=None, cb_recommend_filename=None):
 # Fonction pour le web
 # Récupère les articles les plus appropriés pour un utilisateur        
 def web_search_items(type_recommandation, userId, 
-                     cf_recommend_filename="data/cf_recommend.csv", 
-                     cb_recommend_filename = "data/cb_recommend.csv"):
+                     cf_recommend_filename="HttpTrigger1/data/cf_recommend.csv", 
+                     cb_recommend_filename = "HttpTrigger1/data/cb_recommend.csv"):
     global dict_df
     
     # Initialisations si nécessaire
