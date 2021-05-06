@@ -56,7 +56,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     userId = req.params.get('userId')
     error=''
-    if not userId:
+    if userId is None:
         try:
             req_body = req.get_json()
         except ValueError as ve:
@@ -65,8 +65,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         else:
             userId = req_body.get('userId')
 
-    if userId:
+    if userId is None:
         list_item = web_search_items("cb", userId)
         return func.HttpResponse(json.dumps(list_item), mimetype="application/json")        
     else:
-        return func.HttpResponse(json.dumps("error : " + error), mimetype="application/json")
+        return func.HttpResponse(json.dumps([-1]), mimetype="application/json")
